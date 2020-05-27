@@ -37,7 +37,7 @@ end
 
 Reg.env.Players = game:GetService("Players")
 Reg.env.RegS = game:GetService("ReplicatedStorage")
-Reg.env.Plr = Reg.env.Players.Players
+Reg.env.Plr = Reg.env.Players.LocalPlayer
 
 for i,v in pairs(Reg.env) do
 	print(i,v)
