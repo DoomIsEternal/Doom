@@ -35,4 +35,14 @@ function Reg.GC:DeepSearchFunc(scr)
 	return found
 end
 
+Reg.env.Players = game:GetService("Players")
+Reg.env.RegS = game:GetService("ReplicatedStorage")
+Reg.env.Plr = Reg.env.Players.Players
+
+for i,v in pairs(Reg.env) do
+	print(i,v)
+	getgenv()[i] = v
+end
+Reg.env = nil
+
 getgenv().regSDK = Reg
