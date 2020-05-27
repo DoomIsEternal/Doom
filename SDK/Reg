@@ -1,1 +1,38 @@
+local Reg = {}
+Reg.GC = {}
+Reg.LuaReg = {}
+Reg.env = {}
 
+function Reg.GC:GetFunctionWithScript(scr)
+	local found = {}
+	for _,v in next, getgc() do
+		if typeof(v) == "function" then
+			if getfenv(v).script == scr then
+				found[getinfo(v).name] = v
+			end
+		end
+	end
+	return found
+end
+
+function Reg.GC:DeepSearchFunc(scr)
+	local found = {}
+	for _,v in next, getgc() do
+		if typeof(v) == "function" then
+			if getfenv(v).script == scr then
+				found[getinfo(v).name] = v
+			end
+		elseif typeof(v) == "table" then
+			for _,k in pairs(v) do
+				if typeof(k) == "function" then
+					if getfenv(k).script == scr then
+						found[getinfo(k).name] = v
+					end
+				end
+			end
+		end
+	end
+	return found
+end
+
+getgenv().regSDK = Reg
