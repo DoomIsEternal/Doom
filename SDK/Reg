@@ -37,6 +37,12 @@ end
 
 Reg.env.Players = game:GetService("Players")
 Reg.env.RepS = game:GetService("ReplicatedStorage")
+Reg.env.RunS = game:GetService("RunService")
+Reg.env.RepF = game:GetService("ReplicatedFirst")
+Reg.env.Light = game:GetService("Lighting")
+Reg.env.GetS = {__index=function(self,v)
+	return game:GetService(v) or game:FindService(v)
+end}
 Reg.env.Plr = Reg.env.Players.LocalPlayer
 
 for i,v in pairs(Reg.env) do
