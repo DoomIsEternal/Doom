@@ -40,6 +40,7 @@ Reg.env.RepS = game:GetService("ReplicatedStorage")
 Reg.env.RunS = game:GetService("RunService")
 Reg.env.RepF = game:GetService("ReplicatedFirst")
 Reg.env.Light = game:GetService("Lighting")
+Reg.env.Camera = workspace:FindFirstChild("Camera") or workspace.CurrentCamera
 Reg.env.GetS = {__index=function(self,v)
 	return game:GetService(v) or game:FindService(v)
 end}
