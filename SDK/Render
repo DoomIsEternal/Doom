@@ -1,15 +1,5 @@
-function InitSDK( ... )
-    local SDK = "https://api.github.com/repos/DoomIsEternal/Doom/contents/SDK?ref=master"
-    local SDK_JSON = game:GetService("HttpService"):JSONDecode(game:HttpGet(SDK));
-	for _,Package in next,SDK_JSON do
-	    local code = game:HttpGet(Package.download_url);
-	    getgenv()[Package.name] = loadstring(code)();
-	    warn("Loaded SDK File: "..Package.name)
-	end
-end
-InitSDK()
-
 assert(Drawing,"https://x.synapse.to/ <- Here purchase a good exploit, poor skid.")
+repeat wait() until regSDK and Plr and RunS
 local ESP = {cTeam=true,Info={},Skeletons={},DBoxes={},updating=false,Enabled={s=false,b=false,i={n=false,d=false,t=false}}}
 local Thicc=1
 local color=Color3.fromRGB(255,255,255)
