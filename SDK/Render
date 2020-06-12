@@ -407,6 +407,14 @@ function Clear(sPlr)
 	Info[sPlr.Name] = nil
 end
 
+function CheckTeam(Player)
+	if ESP.cTeam then
+		return Player.Team ~= Plr.Team
+	else
+		return true
+	end
+end
+
 DrawPlayers()
 
 game:GetService("RunService").RenderStepped:Connect(function()
@@ -417,8 +425,8 @@ game:GetService("RunService").RenderStepped:Connect(function()
 		color = Color3.new(1,1,1)
 	end
 	
-    for i,v in pairs(game.Players:GetPlayers()) do
-        if ESP.updating == true and v ~= Plr and (ESP.cTeam and v.Team ~= Plr.Team or true) and v.Character then
+	for i,v in pairs(game.Players:GetPlayers()) do
+        if ESP.updating == true and v ~= Plr and CheckTeam(v) and v.Character then
             local updt,res = pcall(Update,v)
             if not updt then
                 warn(res)
