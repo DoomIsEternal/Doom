@@ -24,7 +24,7 @@ function ClearAll()
         local removed2,failr2 = pcall(function() v.Visible = false end)
         local removed,failr = pcall(function() v:Remove() end)
         if not removed then
-            print(failr)
+            warn("failed to remove object!->",failr)
         end
     end
     drawings = {}
@@ -429,7 +429,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
         if ESP.updating == true and v ~= Plr and CheckTeam(v) and v.Character then
             local updt,res = pcall(Update,v)
             if not updt then
-                warn(res)
+                warn("updt fail",res)
                 ESP.Skeletons = {}
 				ESP.DBoxes = {}
 				ESP.Info = {}
