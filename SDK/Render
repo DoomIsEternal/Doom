@@ -28,10 +28,12 @@ function ClearAll()
         end
     end
     drawings = {}
-    ESP.Skeletons = {}
+	ESP.Skeletons = {}
+	ESP.Info = {}
     ESP.DBoxes = {}
     Skeletons = ESP.Skeletons
-    DBoxes = ESP.DBoxes
+	DBoxes = ESP.DBoxes
+	Info = ESP.Info
 end
 
 function Update(sPlr)
