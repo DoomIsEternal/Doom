@@ -412,7 +412,7 @@ end
 function CheckTeam(Player)
 	if ESP.cTeam then
 		return Player.Team ~= Plr.Team
-	else
+	elseif not ESP.cTeam then
 		return true
 	end
 end
@@ -481,6 +481,7 @@ Plr.Changed:Connect(function(prop)
 		Info = ESP.Info
 
 		DrawPlayers()
+		game:GetService("RunService").RenderStepped:Wait()
 		ESP.updating = true
 	end
 end)
@@ -490,7 +491,7 @@ game:GetService("UserInputService").InputBegan:Connect(function(Input,GP)
     if Input.KeyCode == Enum.KeyCode.F8 then
         warn("Cleared")
 		ESP.updating = false 
-		wait(1)
+		game:GetService("RunService").RenderStepped:Wait()
         pcall(ClearAll)
         DrawPlayers() 
         ESP.updating = true
@@ -501,7 +502,7 @@ local Lib = {}
 
 function Lib:SetESP(Value)
 	ESP.updating = false
-	wait(1)
+	game:GetService("RunService").RenderStepped:Wait()
 	pcall(ClearAll)
 	DrawPlayers()
 	ESP.updating = Value
@@ -511,7 +512,7 @@ function  Lib:SetBox(Value)
 	ESP.Enabled.b = Value
 	local Old = ESP.updating
 	ESP.updating = false
-	wait(1)
+	game:GetService("RunService").RenderStepped:Wait()
 	pcall(ClearAll)
 	DrawPlayers()
 	ESP.updating = Old
@@ -521,7 +522,7 @@ function  Lib:SetSkeleton(Value)
 	ESP.Enabled.s = Value
 	local Old = ESP.updating
 	ESP.updating = false
-	wait(1)
+	game:GetService("RunService").RenderStepped:Wait()
 	pcall(ClearAll)
 	DrawPlayers()
 	ESP.updating = Old
@@ -531,7 +532,7 @@ function  Lib:SetInfo(Info,Value)
 	ESP.Enabled.i[Info] = Value
 	local Old = ESP.updating
 	ESP.updating = false
-	wait(1)
+	game:GetService("RunService").RenderStepped:Wait()
 	pcall(ClearAll)
 	DrawPlayers()
 	ESP.updating = Old
@@ -545,10 +546,10 @@ function Lib:SetExtra(Extra,Value)
 	ESP[Extra] = Value
 	local Old = ESP.updating
 	ESP.updating = false
-	wait(1)
+	game:GetService("RunService").RenderStepped:Wait()
 	pcall(ClearAll)
 	DrawPlayers()
-	wait(1)
+	game:GetService("RunService").RenderStepped:Wait()
 	ESP.updating = Old
 end
 
