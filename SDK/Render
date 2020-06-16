@@ -1,11 +1,12 @@
 assert(Drawing,"https://x.synapse.to/ <- Here purchase a good exploit, poor skid.")
 repeat wait() until regSDK and Plr and RunS
-local ESP = {Rainbow=false,TColor=false,cTeam=true,Info={},Skeletons={},DBoxes={},updating=false,Enabled={s=false,b=false,i={n=false,d=false,t=false}}}
+local ESP = {Rainbow=false,TColor=false,cTeam=true,Info={},Skeletons={},DBoxes={},updating=false,Enabled={s=false,b=false,i={n=false,d=false,t=false}},CustomPlr={}}
 local Thicc=1
 local color=Color3.fromRGB(255,255,255)
 local Skeletons = ESP.Skeletons
 local Info = ESP.Info
 local DBoxes = ESP.DBoxes
+local CustomPlr = ESP.CustomPlr
 
 local drawings = {}
 local templates = {}
@@ -38,6 +39,12 @@ end
 
 function Update(sPlr)
 	local color = ESP.cTeam and (sPlr.Team ~= Plr.Team and Color3.new(1,0,0) or Color3.new(0,1,0)) or color
+	local customName = ""
+
+	if CustomPlr[sPlr.Name] then
+		customName = CustomPlr[sPlr.Name].name
+		color = CustomPlr[sPlr.Name].color
+	end
 
 	local function UpdateInfo()
 		if Info[sPlr.Name] ~= nil and #Info[sPlr.Name] == 3 and sPlr.Character:FindFirstChild("Head") then
@@ -55,7 +62,7 @@ function Update(sPlr)
 			if Vis then
 				if ESP.Enabled.i.n then
 					NameTag.Position = Vector2.new(HeadPos.X, HeadPos.Y);
-					NameTag.Text = sPlr.Name;
+					NameTag.Text = sPlr.Name..customName;
 					NameTag.Color = color;
 					NameTag.Visible = true;
 				else
@@ -555,6 +562,21 @@ end
 
 function Lib:SetENU(Extra,Value)
 	ESP[Extra] = Value
+end
+
+function Lib:SetCustom(Plr,name,newColor)
+	if not CustomPlr[Plr.Name] then CustomPlr[Plr.Name]  = {} end
+
+	CustomPlr[Plr.Name].name = name
+	CustomPlr[Plr.Name].color = newColor
+end
+
+function Lib:RemoveCustom(all,plr)
+	if not all then
+		CustomPlr[Plr.Name] = nil
+	else
+		CustomPlr = {}
+	end
 end
 
 getgenv().ESPLib = Lib
