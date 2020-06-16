@@ -1,6 +1,6 @@
 assert(Drawing,"https://x.synapse.to/ <- Here purchase a good exploit, poor skid.")
 repeat wait() until regSDK and Plr and RunS
-local ESP = {Rainbow=false,TColor=false,cTeam=true,Info={},Skeletons={},DBoxes={},updating=false,Enabled={s=false,b=false,i={n=false,d=false,t=false}},CustomPlr={}}
+local ESP = {Rainbow=false,TColor=false,cTeam=true,cTeamColor=false,Info={},Skeletons={},DBoxes={},updating=false,Enabled={s=false,b=false,i={n=false,d=false,t=false}},CustomPlr={}}
 local Thicc=1
 local color=Color3.fromRGB(255,255,255)
 local Skeletons = ESP.Skeletons
@@ -38,7 +38,7 @@ function ClearAll()
 end
 
 function Update(sPlr)
-	local color = ESP.cTeam and (sPlr.Team ~= Plr.Team and Color3.new(1,0,0) or Color3.new(0,1,0)) or color
+	local color = ESP.cTeamColor and (sPlr.Team ~= Plr.Team and Color3.new(1,0,0) or Color3.new(0,1,0)) or color
 	local customName = ""
 
 	if CustomPlr[sPlr.Name] then
