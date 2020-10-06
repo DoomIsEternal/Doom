@@ -1,6 +1,2 @@
 # Doom
-
-Doom is an advanced open source roblox script hub.
-
-Supported game list:
-Arsenal
+Retarded shit I was working on and no one give a fuck about skid this all you want idc
